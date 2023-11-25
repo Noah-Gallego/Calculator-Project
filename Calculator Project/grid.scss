@@ -1,0 +1,76 @@
+$grid-width: 110rem;
+$gutter-vertical: 8rem;
+$gutter-vertical-small: 6rem;
+$horizantal-gutter: 6rem;
+
+.row {
+  max-width: $grid-width;
+  margin: 0 auto;
+
+  &:not(:last-child) {
+    margin-bottom: $gutter-vertical;
+
+    @include respond(tab-port) {
+      margin-bottom: $gutter-vertical-small;
+    }
+  }
+
+  @include respond(tab-port) {
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+
+  @include clearfix;
+
+  [class^="col-"] {
+    //$=ending with col *=all containing col *=start with col
+    //can select anything containing keyword (anchor, keyword, etc.)
+    float: left;
+
+    &:not(:last-child) {
+      margin-right: $horizantal-gutter;
+
+      @include respond(tab-port) {
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    @include respond(tab-port) {
+      width: 100% !important;
+    }
+  }
+
+  .col-1-of-2 {
+    width: calc((100% - #{$horizantal-gutter}) / 2);
+  }
+
+  .col-1-of-3 {
+    width: calc((100% - 2 * #{$horizantal-gutter}) / 3);
+  }
+
+  .col-2-of-3 {
+    width: calc(
+      2 * ((100% - 2 * #{$horizantal-gutter}) / 3) + #{$horizantal-gutter}
+    );
+  }
+
+  .col-1-of-4 {
+    width: calc((100% - 3 * 72) / 4);
+  }
+
+  .col-2-of-4 {
+    width: calc(
+      2 * ((100% - 3 * #{$horizantal-gutter}) / 4) + #{$horizantal-gutter}
+    );
+  }
+
+  .col-3-of-4 {
+    width: calc(3 * ((100% - 3 * 72px) / 4) + 2 * 72px);
+  }
+
+  .col-1-of-5 {
+    width: calc((100% - 4 * #{$horizantal-gutter}) / 5);
+    // calc = calculate, 100% of width availiable, - number of gutters, divided by number of columns desired
+  }
+}
